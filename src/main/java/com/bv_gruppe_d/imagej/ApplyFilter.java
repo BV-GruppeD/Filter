@@ -15,9 +15,21 @@ public final class ApplyFilter {
 
 	private static ImageProcessor applyFilter(ImageProcessor original, ImageProcessor output,
 			Filtermatrix filterMatrix) {
-		// it should look somewhat like this (depends on FilterMatrix implementation)
-//		applyFilter(copy, original, filterMatrix.getH(), filterMatrix.getVorfaktor(), filterMatrix.getAnkerX(), filterMatrix.getAnkerY());
-		throw new RuntimeException("Will be done later");
+		int size = (int) Math.round(Math.sqrt(filterMatrix.matrix.length));//This assumes a square matrix
+		int w = size;
+		int h = size;
+		double[][] weights = new double[w][h];
+		
+		//line by line
+		for (int y = 0; y < h;++y) {
+			for (int x = 0; x < w;++x) {
+				weights[x][y] = filterMatrix.matrix[y * w + h];
+			}
+		}
+		int ankerX = filterMatrix.hotSpot % w;
+		int ankerY = filterMatrix.hotSpot / w;
+
+		applyFilter(original, output, weights, filterMatrix.factor, ankerX, ankerY);
 	}
 
 	/**
