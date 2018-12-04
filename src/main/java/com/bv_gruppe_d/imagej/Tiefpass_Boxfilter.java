@@ -8,9 +8,9 @@ public class Tiefpass_Boxfilter extends Filtermatrix {
 
     @Override
     public void createMatrix() {
-        int[] _matrix = {1,2,1,2,4,2,1,2,1};
+        int[] _matrix = {1,1,1,1,1,1,1,21,1};
         matrix = _matrix;
-        factor = 1/16;
+        factor = 1/9;
         hotSpot = 4;
     }
 
