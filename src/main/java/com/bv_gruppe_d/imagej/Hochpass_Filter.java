@@ -13,11 +13,11 @@ public class Hochpass_Filter extends Filtermatrix {
 
 		@Override
 		public void calculateMatrix() {
-			Tiefpass_Binomial4 tpmatrix = new Tiefpass_Binomial4();
-			int tpmatrix[] = tpmatrix.getH();
-			double factor = tpmatrix.getScalingFactor();
+			Tiefpass_Binomial4 binomialTiefpassVierterOrdnung = new Tiefpass_Binomial4();
+			int tpmatrix[] = binomialTiefpassVierterOrdnung.getH();
+			double factor = binomialTiefpassVierterOrdnung.getScalingFactor();
 			
-			int L = tpmatrix.length();
+			int L = tpmatrix.length;
 			
 			for (int i = 0; i<L;i++){
 					tpmatrix[i] = -tpmatrix[i];
