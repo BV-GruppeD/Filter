@@ -15,6 +15,7 @@ public class Filter_ implements PlugInFilter {
 		GenericDialog dialog = createChoicesDialog(choices);
 		
 		Filtermatrix filtermatrix = getDemandedFilter(dialog);
+		
 	}
 
 	private GenericDialog createChoicesDialog(String[] choices) {
@@ -29,19 +30,19 @@ public class Filter_ implements PlugInFilter {
 		
 		switch (dialog.getNextChoice()) {
 		case "Boxfilter":
-			
+			matrix = new Tiefpass_Boxfilter();
 			break;
 
 		case "Binomialfilter 3x3":
-			
+			matrix = new Tiefpass_Binomial2();
 			break;
 			
 		case "Binomialfilter 5x5":
-			
+			matrix = new Tiefpass_Binomial4();
 			break;
 			
 		case "Hochpassfilter":
-			
+			matrix = new Hochpass_Filter();
 			break;
 			
 		default:
