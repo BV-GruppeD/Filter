@@ -16,6 +16,7 @@ public class Filter_ implements PlugInFilter {
 		
 		Filtermatrix filtermatrix = getDemandedFilter(dialog);
 		
+		ApplyFilter.applyFilterToOriginal(ip, filtermatrix);
 	}
 
 	private GenericDialog createChoicesDialog(String[] choices) {
