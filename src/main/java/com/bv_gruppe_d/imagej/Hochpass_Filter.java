@@ -1,20 +1,28 @@
 package com.bv_gruppe_d.imagej;
 
-public class Hochpass_Filter {
-	
-		int matrix[][];
-		double factor;
+public class Hochpass_Filter extends Filtermatrix {
 		
 		public void Hochpass() {
-			int L = matrix[0].length;
-			int H = matrix.length;
+			createMatrix();
+		}
+
+		@Override
+		public void createMatrix() {
+			
+		}
+
+		@Override
+		public void calculateMatrix() {
+			Tiefpass_Binomial4 tpmatrix = new Tiefpass_Binomial4();
+			int tpmatrix[] = tpmatrix.getH();
+			double factor = tpmatrix.getScalingFactor();
+			
+			int L = tpmatrix.length();
 			
 			for (int i = 0; i<L;i++){
-				for (int j = 0; j<H;j++) {
-					matrix[i][j] = -matrix[i][j];
-				} 				
+					tpmatrix[i] = -tpmatrix[i];
 			}
-			matrix[L/2][H/2] = (int)(1/factor)-matrix[L/2][H/2];
-		}
-		
+			tpmatrix[(L+1)/2] = (int)(1/factor)-tpmatrix[(L+1)/2];
+			matrix = tpmatrix;
+		}		
 }
