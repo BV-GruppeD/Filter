@@ -13,7 +13,7 @@ public final class ApplyFilter {
 		applyFilter(original.duplicate(), original, filterMatrix);
 	}
 
-	private static ImageProcessor applyFilter(ImageProcessor original, ImageProcessor output,
+	private static void applyFilter(ImageProcessor original, ImageProcessor output,
 			Filtermatrix filterMatrix) {
 		int size = (int) Math.round(Math.sqrt(filterMatrix.matrix.length));//This assumes a square matrix
 		int w = size;
