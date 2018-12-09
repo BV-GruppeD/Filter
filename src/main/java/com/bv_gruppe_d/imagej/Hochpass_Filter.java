@@ -8,14 +8,10 @@ public class Hochpass_Filter extends Filtermatrix {
 
 		@Override
 		public void createMatrix() {
-			
-		}
-
-		@Override
-		public void calculateMatrix() {
 			Tiefpass_Binomial4 binomialTiefpassVierterOrdnung = new Tiefpass_Binomial4();
 			int tpmatrix[] = binomialTiefpassVierterOrdnung.getH();
-			double factor = binomialTiefpassVierterOrdnung.getScalingFactor();
+			factor = binomialTiefpassVierterOrdnung.getScalingFactor();
+			hotSpot = binomialTiefpassVierterOrdnung.hotSpot;
 			
 			int L = tpmatrix.length;
 			
@@ -24,5 +20,10 @@ public class Hochpass_Filter extends Filtermatrix {
 			}
 			tpmatrix[(L+1)/2] = (int)(1/factor)-tpmatrix[(L+1)/2];
 			matrix = tpmatrix;
+		}
+
+		@Override
+		public void calculateMatrix() {
+			
 		}		
 }

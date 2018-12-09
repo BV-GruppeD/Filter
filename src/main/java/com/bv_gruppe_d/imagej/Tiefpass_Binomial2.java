@@ -10,7 +10,7 @@ public class Tiefpass_Binomial2 extends Filtermatrix {
     public void createMatrix() {
         int[] _matrix = {1,2,1,2,4,2,1,2,1};
         matrix = _matrix;
-        factor = 1/16;
+        factor = 1.0f/16.0f;
         hotSpot = 4;
     }
 

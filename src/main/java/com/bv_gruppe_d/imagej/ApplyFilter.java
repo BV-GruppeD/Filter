@@ -23,7 +23,7 @@ public final class ApplyFilter {
 		//line by line
 		for (int y = 0; y < h;++y) {
 			for (int x = 0; x < w;++x) {
-				weights[x][y] = filterMatrix.matrix[y * w + h];
+				weights[x][y] = filterMatrix.matrix[y * w + x];
 			}
 		}
 		int ankerX = filterMatrix.hotSpot % w;
