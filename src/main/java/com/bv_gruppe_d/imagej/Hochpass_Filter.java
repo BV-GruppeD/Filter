@@ -1,9 +1,9 @@
 package com.bv_gruppe_d.imagej;
 
 public class Hochpass_Filter extends Filtermatrix {
-		
-		public void Hochpass() {
+		public Hochpass_Filter() {
 			createMatrix();
+			System.out.println(matrix);
 		}
 
 		@Override
