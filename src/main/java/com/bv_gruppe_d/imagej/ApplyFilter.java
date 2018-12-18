@@ -44,6 +44,20 @@ public final class ApplyFilter {
 
 		int maxX = original.getWidth() - w;// off by 1?
 		int maxY = original.getHeight() - h;// off by 1?
+		
+		double minPossibleValue = 0;
+		double maxPossibleValue = 0;
+		for (int i = 0; i < w; i++) {
+			for (int j = 0; j < h; j++) {
+				double weight = matrix[j][i];
+				double minPixelValue = (weight < 0)? 255 : 0;
+				double maxPixelValue = (weight < 0)? 0 : 255;
+				minPossibleValue += weight * minPixelValue;
+				maxPossibleValue += weight * maxPixelValue;
+			}
+		}
+		minPossibleValue *= matrixPreMultiplicator;
+		maxPossibleValue *= matrixPreMultiplicator;
 
 		for (int x = 0; x < maxX; x++) {
 			for (int y = 0; y < maxY; y++) {
@@ -54,10 +68,12 @@ public final class ApplyFilter {
 						sum += matrix[j][i] * p;// switched indices?
 					}
 				}
-				int newValue = (int) Math.round(matrixPreMultiplicator * sum);
-				newValue = Math.max(0, Math.min(newValue, 255));// clamp
+				double newValue = matrixPreMultiplicator * sum;
+				//newValue = Math.max(0, Math.min(newValue, 255));// clamp
+				//Kontrastanpassung
+				newValue = (255 * (newValue - minPossibleValue)) / (maxPossibleValue - minPossibleValue);
 
-				output.putPixel(x + anchorX, y + anchorY, newValue);
+				output.putPixel(x + anchorX, y + anchorY, (int) Math.round(newValue));
 			}
 		}
 	}
